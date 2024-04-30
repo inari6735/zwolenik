@@ -2,7 +2,10 @@ CREATE DATABASE IF NOT EXISTS zwolenik;
 
 USE zwolenik;
 
-CREATE TABLE product (
+create user 'user'@'%' identified by 'password';
+grant all on zwolenik.* to 'user'@'%';
+
+CREATE TABLE IF NOT EXISTS product (
     id int unsigned not null auto_increment primary key,
     product_number varchar(128),
     state varchar(64),
