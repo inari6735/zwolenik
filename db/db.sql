@@ -15,3 +15,10 @@ CREATE TABLE IF NOT EXISTS product (
     finish varchar(512),
     specification JSON
 )
+
+CREATE TABLE IF NOT EXISTS cart (
+    id int unsigned not null auto_increment primary key,
+    client_id int,
+    product_id int,
+    specification JSON
+)
