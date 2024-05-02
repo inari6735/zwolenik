@@ -2,7 +2,7 @@ CREATE DATABASE IF NOT EXISTS zwolenik;
 
 USE zwolenik;
 
-create user 'user'@'%' identified by 'Popa997#root';
+create user if not exists 'user'@'%' identified by 'Popa997#root';
 grant all on zwolenik.* to 'user'@'%';
 
 CREATE TABLE IF NOT EXISTS product (
@@ -13,12 +13,5 @@ CREATE TABLE IF NOT EXISTS product (
     color varchar(256),
     completion_time varchar(64),
     finish varchar(512),
-    specification JSON
-)
-
-CREATE TABLE IF NOT EXISTS cart (
-    id int unsigned not null auto_increment primary key,
-    client_id int,
-    product_id int,
     specification JSON
 )

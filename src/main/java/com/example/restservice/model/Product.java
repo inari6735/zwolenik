@@ -2,18 +2,12 @@ package com.example.restservice.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EntityListeners;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 import java.io.Serializable;
-
-import org.hibernate.annotations.Comment;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-
-import com.example.restservice.converts.JsonStringConverter;
 
 @Entity
 @Table(name = "product")
@@ -26,8 +20,6 @@ public class Product implements Serializable {
     @Column(name ="name")
     private String name;
 
-
-   
     @Column(name = "price")
     private double price;
 
@@ -50,10 +42,8 @@ public class Product implements Serializable {
     private String finish;
 
     @Column(name = "specification", columnDefinition = "json")
-    // @Convert(converter = JsonStringConverter.class)
-    private String specification;
 
-    // Getters and Setters
+    private String specification;
 
     public int getId() {
         return id;
