@@ -10,6 +10,7 @@ import jakarta.persistence.Table;
 
 import java.io.Serializable;
 
+import org.hibernate.annotations.Comment;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import com.example.restservice.converts.JsonStringConverter;
@@ -21,6 +22,14 @@ public class Product implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+
+    @Column(name ="name")
+    private String name;
+
+
+   
+    @Column(name = "price")
+    private double price;
 
     @Column(name = "product_number", length = 128)
     private String productNumber;
@@ -52,6 +61,22 @@ public class Product implements Serializable {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getName(){
+        return name;
+    }
+
+    public void setName(String name){
+        this.name = name;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
     }
 
     public String getProductNumber() {

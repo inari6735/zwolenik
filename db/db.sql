@@ -2,7 +2,7 @@ CREATE DATABASE IF NOT EXISTS zwolenik;
 
 USE zwolenik;
 
-create user 'user'@'%' identified by 'password';
+create user 'user'@'%' identified by 'Popa997#root';
 grant all on zwolenik.* to 'user'@'%';
 
 CREATE TABLE IF NOT EXISTS product (
