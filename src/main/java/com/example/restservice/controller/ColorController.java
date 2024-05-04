@@ -20,13 +20,13 @@ public class ColorController {
 
 
     @GetMapping(path="/all")
-    public  @ResponseBody Iterable<Color> getAllProducts() {
+    public  @ResponseBody Iterable<Color> getAllColors() {
         return colorRepository.findAll();
     }
     
     @ResponseBody
     @GetMapping(path="/{id}")
-    public Color getProductById(@PathVariable Integer id) throws Exception {
+    public Color getColorById(@PathVariable Integer id) throws Exception {
         return colorRepository.findById(id).orElseThrow(() -> new Exception("Chujowy kolor wybrałes"));
     }
 
