@@ -16,27 +16,15 @@ public class ProductOrder {
     private Integer id;
 
     @Column(name ="product_id")
-    private Integer productId;
+    private Long productId;
     
     @Column(name ="color_id")
     private Integer color;
 
-
     @Column(name = "specification", columnDefinition = "json")
     private String specification;
   
-  
-    // @Column(name ="product_id")
-    // private double thickness;
-     
-    // @Column(name ="product_id")
-    // private double price;
+    @Column(name ="price")
+    private double price;
 
-    // @Column(name ="product_id")
-    // private double width;
-
-    // @Column(name ="product_id")
-    // private double height;
-
-   
 }

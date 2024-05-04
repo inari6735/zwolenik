@@ -42,7 +42,6 @@ public class Product implements Serializable {
     private String finish;
 
     @Column(name = "specification", columnDefinition = "json")
-
     private String specification;
 
     public int getId() {

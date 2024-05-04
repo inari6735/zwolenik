@@ -13,12 +13,12 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
+import com.example.restservice.model.ProductOrder;
 
 @Entity
 @Table(name = "orders")
 public class Order {
  
-    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -28,4 +28,12 @@ public class Order {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "order")
     private List<ProductOrder> products = new ArrayList<>();
+
+    public Double getTotalPrice() {
+        return products.stream()
+                       .mapToDouble(ProductOrder::getPrice)
+                       .sum();
+    }
+
+  
 }
