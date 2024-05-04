@@ -21,7 +21,7 @@ public class Order {
  
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     @Column(name ="paid")
     private Boolean paid;  
