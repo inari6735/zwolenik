@@ -23,17 +23,17 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name ="paid")
-    private Boolean paid;  
+    // @Column(name ="paid")
+    // private Boolean paid;  
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "order")
-    private List<ProductOrder> products = new ArrayList<>();
+    // @OneToMany(cascade = CascadeType.ALL, mappedBy = "order")
+    // private List<ProductOrder> products = new ArrayList<>();
 
-    public Double getTotalPrice() {
-        return products.stream()
-                       .mapToDouble(ProductOrder::getPrice)
-                       .sum();
-    }
+    // public Double getTotalPrice() {
+    //     return products.stream()
+    //                    .mapToDouble(ProductOrder::getPrice)
+    //                    .sum();
+    // }
 
   
 }

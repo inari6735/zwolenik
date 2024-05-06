@@ -15,16 +15,16 @@ public class ProductOrder {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name ="product_id")
-    private Long productId;
+    // @Column(name ="product_id")
+    // private Long productId;
     
-    @Column(name ="color_id")
-    private Integer color;
+    // @Column(name ="color_id")
+    // private Integer color;
 
-    @Column(name = "specification", columnDefinition = "json")
-    private String specification;
+    // @Column(name = "specification", columnDefinition = "json")
+    // private String specification;
   
-    @Column(name ="price")
-    private double price;
+    // @Column(name ="price")
+    // private double price;
 
 }
