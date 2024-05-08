@@ -20,15 +20,15 @@ public class ProductOrderController {
         this.orderService = orderService;
     }
 
-    @PostMapping("/create")
-    public String createProductOrder(@RequestBody ProductOrder productOrder) {
+//    @PostMapping("/create")
+     private String createProductOrder(@RequestBody ProductOrder productOrder) {
         ProductOrder order = new ProductOrder();
         order.setProductId(productOrder.getProductId());
         order.setSpecification(productOrder.getSpecification());
         order.setPrice(productOrder.getPrice());
         order.setAmount(productOrder.getAmount());
 
-        orderService.createOrder(order);
+        orderService.createProductOrder(order);
 
         return "Product zapisany";
     }

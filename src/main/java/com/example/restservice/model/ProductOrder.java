@@ -1,13 +1,13 @@
 package com.example.restservice.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.persistence.*;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.util.Map;
 
 @Entity
 @Table(name = "product_order")
@@ -17,11 +17,12 @@ public class ProductOrder {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @JsonProperty("idProduct")
     @Column(name = "id_product")
-    private Integer productId;
+    private Integer idProduct;
 
     @ManyToOne
-    @JoinColumn(name = "id_order", nullable = false)
+    @JoinColumn(name = "order_id")
     private Order order;
 
     @Column(name = "specification",columnDefinition = "json")
@@ -42,11 +43,11 @@ public class ProductOrder {
     }
 
     public Integer getProductId() {
-        return productId;
+        return idProduct;
     }
 
-    public void setProductId(Integer productId) {
-        this.productId = productId;
+    public void setProductId(Integer idProduct) {
+        this.idProduct = idProduct;
     }
 
     public Order getOrder() {
@@ -57,12 +58,22 @@ public class ProductOrder {
         this.order = order;
     }
 
-    public String getSpecification() {
-        return specification;
+    public Map<String, Object> getSpecification() {
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            return objectMapper.readValue(specification, Map.class); // Deserializacja z JSON na mapę
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException("Error parsing JSON", e);
+        }
     }
 
-    public void setSpecification(String specification) {
-        this.specification = specification;
+    public void setSpecification(Map<String, Object> specificationMap) {
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            this.specification = objectMapper.writeValueAsString(specificationMap); // Serializacja z mapy na JSON
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException("Error writing JSON", e);
+        }
     }
 
     public Double getPrice() {

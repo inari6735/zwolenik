@@ -17,7 +17,7 @@ public class ProductOrderService {
     }
 
     @Transactional
-    public ProductOrder createOrder(ProductOrder order) {
+    public ProductOrder createProductOrder(ProductOrder order) {
         return repository.save(order);
     }
 }
