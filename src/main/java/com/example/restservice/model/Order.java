@@ -2,6 +2,7 @@ package com.example.restservice.model;
 
 import java.util.*;
 
+import com.example.restservice.service.ProductOrderService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -41,7 +42,8 @@ public class Order {
     @Temporal(TemporalType.TIMESTAMP)
     private Date datePlaced;
 
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ProductOrder> configurations;
 
     @PrePersist
@@ -54,7 +56,12 @@ public class Order {
     }
 
     public void setConfigurations(List<ProductOrder> configurations) {
+        ProductOrderService productOrder;
+
         this.configurations = configurations;
+        for (ProductOrder po : configurations) {
+            po.setOrder(this);
+        }
     }
 
     public Integer getId() {
@@ -98,6 +105,7 @@ public class Order {
             throw new RuntimeException("Error writing JSON", e);
         }
     }
+
     public String getEmail() {
         return email;
     }
@@ -124,19 +132,7 @@ public class Order {
 
 
 
-    private String convertAddressToJSON(String name, String surname, String address, String city, String postcode, String deliveryOption) {
-        Map<String, String> addressDetails = new HashMap<>();
-        addressDetails.put("name", name);
-        addressDetails.put("surname", surname);
-        addressDetails.put("address", address);
-        addressDetails.put("city", city);
-        addressDetails.put("postcode", postcode);
-        addressDetails.put("deliveryOption", deliveryOption);
-        ObjectMapper mapper = new ObjectMapper();
-        try {
-            return mapper.writeValueAsString(addressDetails);
-        } catch (JsonProcessingException e) {
-            throw new RuntimeException("Error creating address JSON", e);
-        }
-    }
+
+
+
 }

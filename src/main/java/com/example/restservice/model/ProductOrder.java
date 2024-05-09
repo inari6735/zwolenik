@@ -21,8 +21,8 @@ public class ProductOrder {
     @Column(name = "id_product")
     private Integer idProduct;
 
-    @ManyToOne
-    @JoinColumn(name = "order_id")
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "order_id", nullable = false)
     private Order order;
 
     @Column(name = "specification",columnDefinition = "json")
