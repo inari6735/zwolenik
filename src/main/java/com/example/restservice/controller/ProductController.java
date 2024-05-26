@@ -30,5 +30,5 @@ public class ProductController {
         return productRepository.findById(id).orElseThrow(() -> new Exception("Kurwa ni mo"));
     }
 
-    
+
 }
