@@ -24,11 +24,12 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
 
-
+//    z powodu prac na front trzeba, by nie blokowalo
         http
                 .csrf(csrf -> csrf.disable())   // nie jestem pewien czy to wyłączać
                 .authorizeHttpRequests(authorizeRequests -> authorizeRequests
-                        .requestMatchers("/api/v1/auth/**").permitAll()
+//                        .requestMatchers("/api/v1/auth/**").permitAll()
+                                .requestMatchers("/**").permitAll()
                         .anyRequest().authenticated()
                 )   //zmienic to bo otwiera tylko rejestracje reszta wymaga tokenu
                 .sessionManagement(session -> session
